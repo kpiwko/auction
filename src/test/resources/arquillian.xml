@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<arquillian>
+  <extension qualifier="selenium">
+    <configuration>
+      <property name="browser">*firefox /opt/firefox-3.0/bin/firefox</property>      
+    </configuration>
+  </extension>
+</arquillian>

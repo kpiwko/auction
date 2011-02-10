@@ -2,51 +2,22 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
    <modelVersion>4.0.0</modelVersion>
 
-   <groupId>lectures</groupId>
-   <artifactId>practice0x-testing</artifactId>
-   <version>0.0.1-SNAPSHOT</version>
+   <groupId>org.jboss.lectures</groupId>
+   <artifactId>auction</artifactId>
+   <version>1.0.0-SNAPSHOT</version>
    <packaging>war</packaging>
 
-   <name>JEE lab - Testing - JBDS</name>
+   <name>JEE lab - Auction</name>
 
    <properties>
       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-      <arquillian.version>1.0.0.Alpha4</arquillian.version>
-      <shrinkwrap.version>1.0.0-alpha-11</shrinkwrap.version>
-      <selenium.version>2.0a5</selenium.version>
-      <testng.version>5.12.1</testng.version>
+      <arquillian.version>1.0.0-rhdc</arquillian.version>
+      <shrinkwrap.version>1.0.0-rhdc</shrinkwrap.version>
+      <selenium.version>2.0b1</selenium.version>
       <mockito.version>1.8.1</mockito.version>
       <junit.version>4.8.1</junit.version>
       <slf4j.version>1.5.10</slf4j.version>
    </properties>
-
-   <repositories>
-      <repository>
-         <id>jboss-public-repository</id>
-         <name>JBoss Repository</name>
-         <url>http://repository.jboss.org/nexus/content/groups/public</url>
-         <releases>
-            <updatePolicy>never</updatePolicy>
-         </releases>
-         <snapshots>
-            <updatePolicy>daily</updatePolicy>
-         </snapshots>
-      </repository>
-   </repositories>
-
-   <pluginRepositories>
-      <pluginRepository>
-         <id>jboss-public-repository</id>
-         <name>JBoss Repository</name>
-         <url>http://repository.jboss.org/nexus/content/groups/public</url>
-         <releases>
-            <updatePolicy>never</updatePolicy>
-         </releases>
-         <snapshots>
-            <updatePolicy>daily</updatePolicy>
-         </snapshots>
-      </pluginRepository>
-   </pluginRepositories>
 
    <dependencyManagement>
       <dependencies>
@@ -168,18 +139,6 @@
          <scope>test</scope>
       </dependency>
       <dependency>
-         <groupId>org.seleniumhq.selenium</groupId>
-         <artifactId>selenium</artifactId>
-         <version>${selenium.version}</version>
-         <scope>test</scope>
-         <exclusions>
-            <exclusion>
-               <groupId>org.hamcrest</groupId>
-               <artifactId>hamcrest-all</artifactId>
-            </exclusion>
-         </exclusions>
-      </dependency>
-      <dependency>
          <groupId>org.slf4j</groupId>
          <artifactId>slf4j-simple</artifactId>
          <version>${slf4j.version}</version>
@@ -187,19 +146,12 @@
       </dependency>
 
       <dependency>
-         <groupId>org.seleniumhq.selenium</groupId>
-         <artifactId>selenium-server</artifactId>
-         <version>${selenium.version}</version>
-         <scope>test</scope>
-      </dependency>
-<!--
-      <dependency>
          <groupId>org.jboss.shrinkwrap</groupId>
          <artifactId>shrinkwrap-extension-dependencies</artifactId>
          <version>${shrinkwrap.version}</version>
          <scope>test</scope>
       </dependency>
--->
+
    </dependencies>
 
    <build>
@@ -236,7 +188,7 @@
          </build>
       </profile>
       <profile>
-         <id>ftest-jboss-remote</id>
+         <id>jbossas-remote-6</id>
          <properties>
             <arquillian.container.version>6.0.0.20101110-CR1</arquillian.container.version>
          </properties>
@@ -254,6 +206,19 @@
                <type>pom</type>
             </dependency>
          </dependencies>
+      </profile>
+
+      <profile>
+         <id>defaultselenium</id>
+
+         <dependencies>
+            <dependency>
+               <groupId>org.seleniumhq.selenium</groupId>
+               <artifactId>selenium-server</artifactId>
+               <version>${selenium.version}</version>
+               <scope>test</scope>
+            </dependency>
+         </dependencies>
 
          <build>
             <plugins>
@@ -266,7 +231,7 @@
                         <arquillian.selenium.server.enable>true</arquillian.selenium.server.enable>
                      </systemPropertyVariables>
                      <includes>
-                        <include>**/Sel*Test.java</include>
+                        <include>**/SeleniumTest.class</include>
                      </includes>
                   </configuration>
                </plugin>
@@ -274,4 +239,44 @@
          </build>
       </profile>
    </profiles>
+
+   <repositories>
+      <repository>
+         <id>jboss-public-repository</id>
+         <name>JBoss Repository</name>
+         <url>http://repository.jboss.org/nexus/content/groups/public</url>
+         <releases>
+            <updatePolicy>never</updatePolicy>
+         </releases>
+         <snapshots>
+            <updatePolicy>daily</updatePolicy>
+         </snapshots>
+      </repository>
+      <repository>
+         <id>red-hat-developer-conf-repository</id>
+         <name>Red Hat Developer Conference Repository</name>
+         <url>file:///tmp/rhdc-repository</url>
+         <releases>
+            <updatePolicy>never</updatePolicy>
+         </releases>
+         <snapshots>
+            <updatePolicy>daily</updatePolicy>
+         </snapshots>
+      </repository>
+   </repositories>
+
+   <pluginRepositories>
+      <pluginRepository>
+         <id>jboss-public-repository</id>
+         <name>JBoss Repository</name>
+         <url>http://repository.jboss.org/nexus/content/groups/public</url>
+         <releases>
+            <updatePolicy>never</updatePolicy>
+         </releases>
+         <snapshots>
+            <updatePolicy>daily</updatePolicy>
+         </snapshots>
+      </pluginRepository>
+   </pluginRepositories>
+
 </project>
