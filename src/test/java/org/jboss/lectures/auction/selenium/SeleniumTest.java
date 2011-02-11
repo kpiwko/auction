@@ -20,7 +20,6 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.dependencies.Dependencies;
 import org.jboss.shrinkwrap.dependencies.impl.MavenDependencies;
 import org.jboss.shrinkwrap.dependencies.impl.filter.ScopeFilter;
-import org.jboss.shrinkwrap.impl.base.importer.ExplodedImporterImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -48,7 +47,7 @@ public class SeleniumTest
             .addManifestResource(new File("src/main/resources/META-INF/persistence.xml"))
             .setWebXML(new File("src/main/webapp/WEB-INF/web.xml"));
      
-      war.as(ZipExporter.class).exportTo(new File("/tmp/test.war"), true);
+      war.as(ZipExporter.class).exportTo(new File("auction.war"), true);
 
       return war;
 
@@ -57,9 +56,11 @@ public class SeleniumTest
    @Test
    public void testLogin()
    {
-      selenium.open(contextPath + "/index.html");
+      selenium.open(contextPath + "/");
+      
+      selenium.waitForPageToLoad("10000");
 
-      selenium.type("tester@tester.org", "xpath=//input[contains(@id, 'emailInput')]");
+      selenium.type("xpath=//input[contains(@id, 'emailInput')]", "tester@tester.org");
       selenium.click("xpath=//input[contains(@id, 'loginButton')]");
    }
 

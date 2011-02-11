@@ -229,6 +229,7 @@
                   <configuration>
                      <systemPropertyVariables>
                         <arquillian.selenium.server.enable>true</arquillian.selenium.server.enable>
+                        <arquillian.selenium.speed>500</arquillian.selenium.speed>
                      </systemPropertyVariables>
                      <includes>
                         <include>**/SeleniumTest.class</include>
