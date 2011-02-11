@@ -13,6 +13,7 @@
       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
       <arquillian.version>1.0.0-rhdc</arquillian.version>
       <shrinkwrap.version>1.0.0-rhdc</shrinkwrap.version>
+      <ajocado.version>1.5.3-rhdc</ajocado.version>
       <selenium.version>2.0b1</selenium.version>
       <mockito.version>1.8.1</mockito.version>
       <junit.version>4.8.1</junit.version>
@@ -209,7 +210,7 @@
       </profile>
 
       <profile>
-         <id>defaultselenium</id>
+         <id>ajocado</id>
 
          <dependencies>
             <dependency>
@@ -217,6 +218,18 @@
                <artifactId>selenium-server</artifactId>
                <version>${selenium.version}</version>
                <scope>test</scope>
+            </dependency>
+            <dependency>
+               <groupId>org.jboss.arquillian.ajocado</groupId>
+               <artifactId>arquillian-ajocado-impl</artifactId>
+               <version>${ajocado.version}</version>
+               <scope>test</scope>
+               <exclusions>
+                  <exclusion>
+                     <groupId>org.testng</groupId>
+                     <artifactId>testng</artifactId>
+                  </exclusion>
+               </exclusions>
             </dependency>
          </dependencies>
 
@@ -229,10 +242,9 @@
                   <configuration>
                      <systemPropertyVariables>
                         <arquillian.selenium.server.enable>true</arquillian.selenium.server.enable>
-                        <arquillian.selenium.speed>500</arquillian.selenium.speed>
                      </systemPropertyVariables>
                      <includes>
-                        <include>**/SeleniumTest.class</include>
+                        <include>**/AjocadoTest.class</include>
                      </includes>
                   </configuration>
                </plugin>
