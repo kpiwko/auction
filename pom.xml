@@ -140,6 +140,18 @@
          <scope>test</scope>
       </dependency>
       <dependency>
+         <groupId>org.jboss.arquillian.ajocado</groupId>
+         <artifactId>arquillian-ajocado-impl</artifactId>
+         <version>${ajocado.version}</version>
+         <scope>test</scope>
+         <exclusions>
+            <exclusion>
+               <groupId>org.testng</groupId>
+               <artifactId>testng</artifactId>
+            </exclusion>
+         </exclusions>
+      </dependency>
+      <dependency>
          <groupId>org.slf4j</groupId>
          <artifactId>slf4j-simple</artifactId>
          <version>${slf4j.version}</version>
@@ -218,18 +230,6 @@
                <artifactId>selenium-server</artifactId>
                <version>${selenium.version}</version>
                <scope>test</scope>
-            </dependency>
-            <dependency>
-               <groupId>org.jboss.arquillian.ajocado</groupId>
-               <artifactId>arquillian-ajocado-impl</artifactId>
-               <version>${ajocado.version}</version>
-               <scope>test</scope>
-               <exclusions>
-                  <exclusion>
-                     <groupId>org.testng</groupId>
-                     <artifactId>testng</artifactId>
-                  </exclusion>
-               </exclusions>
             </dependency>
          </dependencies>
 
