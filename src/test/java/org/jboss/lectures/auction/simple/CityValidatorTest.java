@@ -7,12 +7,9 @@ import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.lectures.auction.validation.City;
 import org.jboss.lectures.auction.validation.CityValidator;
 import org.jboss.shrinkwrap.api.Archive;
-import org.jboss.shrinkwrap.api.ArchivePaths;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.StringAsset;
+import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.jboss.shrinkwrap.descriptor.api.Descriptors;
-import org.jboss.shrinkwrap.descriptor.api.spec.cdi.beans.BeansDescriptor;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,9 +25,7 @@ public class CityValidatorTest
    {
       return ShrinkWrap.create(JavaArchive.class)
          .addClasses(CityValidator.class, City.class)
-         .addManifestResource(
-               new StringAsset(Descriptors.create(BeansDescriptor.class).exportAsString()), 
-               ArchivePaths.create("beans.xml"));         
+         .addManifestResource(EmptyAsset.INSTANCE, "beans.xml");
    }
 
    @Test

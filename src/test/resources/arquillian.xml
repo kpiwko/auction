@@ -3,6 +3,7 @@
   <extension qualifier="selenium">
     <configuration>
       <property name="browser">*firefox /opt/firefox-3.0/bin/firefox</property>      
+      <property name="serverEnable">true</property>
     </configuration>
   </extension>
 </arquillian>

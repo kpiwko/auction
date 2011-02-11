@@ -240,9 +240,6 @@
                   <artifactId>maven-surefire-plugin</artifactId>
                   <version>2.6</version>
                   <configuration>
-                     <systemPropertyVariables>
-                        <arquillian.selenium.server.enable>true</arquillian.selenium.server.enable>
-                     </systemPropertyVariables>
                      <includes>
                         <include>**/AjocadoTest.class</include>
                      </includes>
